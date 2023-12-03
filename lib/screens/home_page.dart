@@ -37,8 +37,8 @@ class HomePage extends StatelessWidget {
           Center(
             child: TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(CupertinoPageRoute(
-                      builder: (context) => MainPage()));
+                  Navigator.of(context).push(
+                      CupertinoPageRoute(builder: (context) => MainPage()));
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.white)),

@@ -57,6 +57,8 @@ class _ScanQRScreenState extends State<ScanQRScreen> {
             controller: cameraController,
           ),
         ),
+
+        //Image.asset('assets/images/qr.png')),
         const SizedBox(
           height: 20,
         ),
