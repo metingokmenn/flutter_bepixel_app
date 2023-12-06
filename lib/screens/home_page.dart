@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
               'GALATASARAY',
               style: GoogleFonts.orbitron(
                   color: Colors.white,
-                  fontSize: 40,
+                  fontSize: 36,
                   fontWeight: FontWeight.bold),
             ),
           ),
