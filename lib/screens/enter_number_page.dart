@@ -3,10 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bepixel_app/screens/location_info.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class EnterNumberScreen extends StatelessWidget {
-  const EnterNumberScreen({
+class EnterNumberScreen extends StatefulWidget {
+  EnterNumberScreen({
     super.key,
   });
+
+  @override
+  State<EnterNumberScreen> createState() => _EnterNumberScreenState();
+}
+
+class _EnterNumberScreenState extends State<EnterNumberScreen> {
+  final TextEditingController controller = TextEditingController();
+
+  String warningText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +29,11 @@ class EnterNumberScreen extends StatelessWidget {
           style: GoogleFonts.montserrat(
               fontWeight: FontWeight.w500, fontSize: 18, color: Colors.white),
         ),
+        Text(warningText),
         Padding(
           padding: const EdgeInsets.all(36.0),
           child: TextFormField(
+            controller: controller,
             textAlign: TextAlign.center,
             decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -39,9 +50,18 @@ class EnterNumberScreen extends StatelessWidget {
               backgroundColor: MaterialStateProperty.all(
                   const Color.fromARGB(255, 237, 159, 57))),
           onPressed: () {
-            Navigator.of(context).push(
-              CupertinoPageRoute(builder: (context) => const LocationPage()),
-            );
+            if (controller.text.startsWith("GS_KALAMIS-")) {
+              Navigator.of(context).push(
+                CupertinoPageRoute(builder: (context) => const LocationPage()),
+              );
+              setState(() {
+                warningText = '';
+              });
+            } else {
+              setState(() {
+                warningText = 'Invalid number';
+              });
+            }
           },
           child: const Text(
             'Submit',
