@@ -4,7 +4,7 @@ import 'package:flutter_bepixel_app/screens/scan_qr_page.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({super.key});
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
