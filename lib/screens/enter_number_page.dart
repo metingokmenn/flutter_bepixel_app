@@ -4,7 +4,7 @@ import 'package:flutter_bepixel_app/screens/location_info.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EnterNumberScreen extends StatefulWidget {
-  EnterNumberScreen({
+  const EnterNumberScreen({
     super.key,
   });
 

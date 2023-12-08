@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> {
               flex: 2,
               child: _tabTextIndexSelected == 0
                   ? const ScanQRScreen()
-                  : EnterNumberScreen()),
+                  : const EnterNumberScreen()),
           Expanded(
             flex: 1,
             child: Center(
