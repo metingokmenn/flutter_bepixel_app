@@ -29,8 +29,12 @@ class _ScanQRScreenState extends State<ScanQRScreen> {
       for (final barcode in barcodes) {
         if (barcode.rawValue!.startsWith("GS_KALAMIS-")) {
           debugPrint(barcode.rawValue);
+          String seatID = barcode.rawValue!.substring(10);
           Navigator.of(context).push(
-            CupertinoPageRoute(builder: (context) => const LocationPage()),
+            CupertinoPageRoute(
+                builder: (context) => LocationPage(
+                      seatID: seatID,
+                    )),
           );
           _screenOpened = true;
         }
@@ -38,7 +42,7 @@ class _ScanQRScreenState extends State<ScanQRScreen> {
     }
   }
 
-  Column body() {
+  Widget body() {
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -5,7 +5,8 @@ import 'package:flutter_bepixel_app/service/app_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LocationPage extends StatefulWidget {
-  const LocationPage({super.key});
+  LocationPage({super.key, required this.seatID});
+  String seatID;
 
   @override
   State<LocationPage> createState() => _LocationPageState();
@@ -53,8 +54,10 @@ class _LocationPageState extends State<LocationPage> {
 
                     Duration latency = data.difference(now);
                     Future.delayed(latency, () {
-                      Navigator.of(context).push(CupertinoPageRoute(
-                          builder: (context) => const ColorScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ColorScreen(
+                                seatID: widget.seatID,
+                              )));
                     });
                     debugPrint(
                         "-------------LOCAL TIME----------------- ${DateTime.now()}");
