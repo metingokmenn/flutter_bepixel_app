@@ -3,7 +3,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bepixel_app/screens/model/seat_color.dart';
+import 'package:flutter_bepixel_app/model/seat_color.dart';
+
 import 'package:flutter_bepixel_app/service/app_service.dart';
 
 class ColorScreen extends StatefulWidget {

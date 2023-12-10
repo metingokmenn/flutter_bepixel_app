@@ -15,7 +15,7 @@ class LocationPage extends StatefulWidget {
 
 class _LocationPageState extends State<LocationPage> {
   AppService service = AppService();
-  late Future<DateTime> serverTimeFuture;
+  late Future<List<dynamic>> serverTimeFuture;
 
   @override
   void initState() {
@@ -37,12 +37,14 @@ class _LocationPageState extends State<LocationPage> {
             style: GoogleFonts.orbitron(
                 color: Colors.black, fontWeight: FontWeight.w500, fontSize: 18),
           ),
-          FutureBuilder<DateTime>(
+          FutureBuilder<List<dynamic>>(
               future: serverTimeFuture,
               builder: (context, snapshot) {
                 return TextButton(
                   onPressed: () async {
-                    DateTime data = await service.getServerTime();
+                    List<dynamic> data = await service.getServerTime();
+                    DateTime serverDate = data[0];
+
                     DateTime now = DateTime.now();
                     //String data = snapshot.data!;
 
@@ -53,22 +55,28 @@ class _LocationPageState extends State<LocationPage> {
                             .substring(0, 3)) +
                         serverS * 1000;*/
 
-                    Duration latency = data.difference(now);
-                    Future.delayed(latency, () {
+                    double syncLatency = data[1].inMilliseconds / 2;
+
+                    Future.delayed(Duration(milliseconds: syncLatency.ceil()),
+                        () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => ColorScreen(
                                 seatID: widget.seatID,
                               )));
                     });
+
+                    DateTime syncedTime =
+                        now.add(Duration(milliseconds: syncLatency.ceil()));
+
                     debugPrint(
                         "-------------LOCAL TIME----------------- ${DateTime.now()}");
                     debugPrint(
-                        "-------------SERVER TIME----------------- $data");
-
-                    debugPrint("---------LATENCY-------- $latency");
+                        "-------------SERVER TIME----------------- $serverDate");
 
                     debugPrint(
-                        "-----------ACTUAL TIME--------- ${now.add(latency)}");
+                        "---------LATENCY-------- ${Duration(milliseconds: syncLatency.ceil())}");
+
+                    debugPrint("-----------SYNCED TIME--------- $syncedTime");
                   },
                   style: ButtonStyle(
                       fixedSize: MaterialStateProperty.all(const Size(200, 10)),
