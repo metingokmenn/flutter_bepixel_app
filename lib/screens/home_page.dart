@@ -18,16 +18,9 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: Image.asset(
-              'assets/images/galatasaray.png',
-              fit: BoxFit.fitHeight,
-            ),
-          ),
           Center(
             child: Text(
-              'GALATASARAY',
+              'PixStad',
               style: GoogleFonts.orbitron(
                   color: Colors.white,
                   fontSize: 36,
@@ -35,10 +28,19 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Center(
+            child: Text(
+              'GALATASARAY',
+              style: GoogleFonts.orbitron(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Center(
             child: TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      CupertinoPageRoute(builder: (context) => const MainPage()));
+                  Navigator.of(context).push(CupertinoPageRoute(
+                      builder: (context) => const MainPage()));
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.white)),
